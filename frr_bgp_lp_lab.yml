@@ -1,0 +1,36 @@
+name: bgp_local_pref_lab
+
+topology:
+  nodes:
+    ISP1_R1:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - BGP/local-preference/device/ISP1_R1/frr.conf:/etc/frr/frr.conf
+        - BGP/local-preference/device/ISP1_R1/daemons:/etc/frr/daemons
+    
+    ISP2_R1:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - BGP/local-preference/device/ISP2_R1/frr.conf:/etc/frr/frr.conf
+        - BGP/local-preference/device/ISP2_R1/daemons:/etc/frr/daemons
+        
+    CE3:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - BGP/local-preference/device/CE3/frr.conf:/etc/frr/frr.conf
+        - BGP/local-preference/device/CE3/daemons:/etc/frr/daemons
+        
+    CE4:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - BGP/local-preference/device/CE4/frr.conf:/etc/frr/frr.conf
+        - BGP/local-preference/device/CE4/daemons:/etc/frr/daemons
+
+  links:
+    - endpoints: ["CE3:eth1", "ISP1_R1:eth1"]
+    - endpoints: ["CE4:eth1", "ISP2_R1:eth1"]
+    - endpoints: ["CE3:eth2", "CE4:eth2"]
