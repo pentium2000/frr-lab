@@ -1,4 +1,4 @@
-name: bgp_local_pref_lab
+name: lp
 
 topology:
   nodes:
@@ -6,29 +6,29 @@ topology:
       kind: linux
       image: frrouting/frr:latest
       binds:
-        - BGP/local-preference/device/ISP1_R1/frr.conf:/etc/frr/frr.conf
-        - BGP/local-preference/device/ISP1_R1/daemons:/etc/frr/daemons
+        - device/ISP1_R1/frr.conf:/etc/frr/frr.conf
+        - device/ISP1_R1/daemons:/etc/frr/daemons
     
     ISP2_R1:
       kind: linux
       image: frrouting/frr:latest
       binds:
-        - BGP/local-preference/device/ISP2_R1/frr.conf:/etc/frr/frr.conf
-        - BGP/local-preference/device/ISP2_R1/daemons:/etc/frr/daemons
+        - device/ISP2_R1/frr.conf:/etc/frr/frr.conf
+        - device/ISP2_R1/daemons:/etc/frr/daemons
         
     CE3:
       kind: linux
       image: frrouting/frr:latest
       binds:
-        - BGP/local-preference/device/CE3/frr.conf:/etc/frr/frr.conf
-        - BGP/local-preference/device/CE3/daemons:/etc/frr/daemons
+        - device/CE3/frr.conf:/etc/frr/frr.conf
+        - device/CE3/daemons:/etc/frr/daemons
         
     CE4:
       kind: linux
       image: frrouting/frr:latest
       binds:
-        - BGP/local-preference/device/CE4/frr.conf:/etc/frr/frr.conf
-        - BGP/local-preference/device/CE4/daemons:/etc/frr/daemons
+        - device/CE4/frr.conf:/etc/frr/frr.conf
+        - device/CE4/daemons:/etc/frr/daemons
 
   links:
     - endpoints: ["CE3:eth1", "ISP1_R1:eth1"]
