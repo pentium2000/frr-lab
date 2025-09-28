@@ -2,19 +2,19 @@ name: lp
 
 topology:
   nodes:
-    ISP1_R1:
+    ISP1:
       kind: linux
       image: frrouting/frr:latest
       binds:
-        - device/ISP1_R1/frr.conf:/etc/frr/frr.conf
-        - device/ISP1_R1/daemons:/etc/frr/daemons
+        - device/ISP1/frr.conf:/etc/frr/frr.conf
+        - device/ISP1/daemons:/etc/frr/daemons
     
-    ISP2_R1:
+    ISP2:
       kind: linux
       image: frrouting/frr:latest
       binds:
-        - device/ISP2_R1/frr.conf:/etc/frr/frr.conf
-        - device/ISP2_R1/daemons:/etc/frr/daemons
+        - device/ISP2/frr.conf:/etc/frr/frr.conf
+        - device/ISP2/daemons:/etc/frr/daemons
         
     CE3:
       kind: linux
@@ -31,6 +31,6 @@ topology:
         - device/CE4/daemons:/etc/frr/daemons
 
   links:
-    - endpoints: ["CE3:eth1", "ISP1_R1:eth1"]
-    - endpoints: ["CE4:eth1", "ISP2_R1:eth1"]
+    - endpoints: ["CE3:eth1", "ISP1:eth1"]
+    - endpoints: ["CE4:eth1", "ISP2:eth1"]
     - endpoints: ["CE3:eth2", "CE4:eth2"]
