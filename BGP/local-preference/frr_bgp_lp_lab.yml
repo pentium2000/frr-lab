@@ -2,35 +2,35 @@ name: lp
 
 topology:
   nodes:
-    ISP1:
+    isp1:
       kind: linux
       image: frrouting/frr:latest
       binds:
-        - device/ISP1/frr.conf:/etc/frr/frr.conf
-        - device/ISP1/daemons:/etc/frr/daemons
+        - device/isp1/frr.conf:/etc/frr/frr.conf
+        - device/isp1/daemons:/etc/frr/daemons
     
-    ISP2:
+    isp2:
       kind: linux
       image: frrouting/frr:latest
       binds:
-        - device/ISP2/frr.conf:/etc/frr/frr.conf
-        - device/ISP2/daemons:/etc/frr/daemons
+        - device/isp2/frr.conf:/etc/frr/frr.conf
+        - device/isp2/daemons:/etc/frr/daemons
         
-    CE3:
+    ce3:
       kind: linux
       image: frrouting/frr:latest
       binds:
-        - device/CE3/frr.conf:/etc/frr/frr.conf
-        - device/CE3/daemons:/etc/frr/daemons
+        - device/ce3/frr.conf:/etc/frr/frr.conf
+        - device/ce3/daemons:/etc/frr/daemons
         
-    CE4:
+    ce4:
       kind: linux
       image: frrouting/frr:latest
       binds:
-        - device/CE4/frr.conf:/etc/frr/frr.conf
-        - device/CE4/daemons:/etc/frr/daemons
+        - device/ce4/frr.conf:/etc/frr/frr.conf
+        - device/ce4/daemons:/etc/frr/daemons
 
   links:
-    - endpoints: ["CE3:eth1", "ISP1:eth1"]
-    - endpoints: ["CE4:eth1", "ISP2:eth1"]
-    - endpoints: ["CE3:eth2", "CE4:eth2"]
+    - endpoints: ["ce3:eth1", "isp1:eth1"]
+    - endpoints: ["ce4:eth1", "isp2:eth1"]
+    - endpoints: ["ce3:eth2", "ce4:eth2"]
